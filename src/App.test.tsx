@@ -1,4 +1,4 @@
-import type { HostAppAPI, ConnectToHostAppResult } from '@cognite/app-sdk';
+import type { HostAppAPI } from '@cognite/app-sdk';
 import { CogniteClient } from '@cognite/sdk';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, waitFor } from '@testing-library/react';
@@ -19,18 +19,28 @@ function makeApi(): WorkspaceHost {
   };
 }
 
+function hostApi(): HostAppAPI {
+  return {
+    getProject: vi.fn<HostAppAPI['getProject']>(() => Promise.resolve('publicdatacdm')),
+    getBaseUrl: vi.fn<HostAppAPI['getBaseUrl']>(() => Promise.resolve('https://cognite.test')),
+    getAccessToken: vi.fn<HostAppAPI['getAccessToken']>(() => Promise.resolve('test-token')),
+    getAppId: vi.fn<HostAppAPI['getAppId']>(() => Promise.resolve('test-app-id')),
+    syncInternalState: vi.fn<HostAppAPI['syncInternalState']>(() => Promise.resolve(true)),
+    navigateInternal: vi.fn<HostAppAPI['navigateInternal']>(() => Promise.resolve(true)),
+    navigateExternal: vi.fn<HostAppAPI['navigateExternal']>(() => Promise.resolve(true)),
+    registerAgentServer: vi.fn<HostAppAPI['registerAgentServer']>(() => Promise.resolve()),
+    unregisterAgentServer: vi.fn<HostAppAPI['unregisterAgentServer']>(() => Promise.resolve()),
+    sendAgentLayoutMode: vi.fn<HostAppAPI['sendAgentLayoutMode']>(() => Promise.resolve()),
+    sendAgentMessage: vi.fn<HostAppAPI['sendAgentMessage']>(() => Promise.resolve()),
+    sendAgentTheme: vi.fn<HostAppAPI['sendAgentTheme']>(() => Promise.resolve()),
+    setActiveAgent: vi.fn<HostAppAPI['setActiveAgent']>(() => Promise.resolve()),
+    setHideShell: vi.fn<HostAppAPI['setHideShell']>(() => Promise.resolve()),
+  };
+}
+
 function makeDeps(): AppDeps {
   return {
-    connectToHostApp: vi.fn<AppDeps['connectToHostApp']>(() =>
-      Promise.resolve({
-        api: {
-          getProject: vi.fn<HostAppAPI['getProject']>(() => Promise.resolve('publicdatacdm')),
-          getBaseUrl: vi.fn<HostAppAPI['getBaseUrl']>(() => Promise.resolve('https://cognite.test')),
-          getAccessToken: vi.fn<HostAppAPI['getAccessToken']>(() => Promise.resolve('test-token')),
-          getAppId: vi.fn<HostAppAPI['getAppId']>(() => Promise.resolve('test-app-id')),
-        } as Partial<HostAppAPI> as HostAppAPI,
-      } as ConnectToHostAppResult),
-    ),
+    connectToHostApp: vi.fn<AppDeps['connectToHostApp']>(() => Promise.resolve({ api: hostApi() })),
     createClient: vi.fn<AppDeps['createClient']>((config) => new CogniteClient(config)),
   };
 }
