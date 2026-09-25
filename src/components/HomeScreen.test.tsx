@@ -15,7 +15,7 @@ import { HomeScreen } from './HomeScreen';
 describe(HomeScreen.name, () => {
   it('asks for a search when nothing has been opened', async () => {
     renderScreen(service());
-    expect(await screen.findByRole('heading', { name: 'Asset 360' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: 'Ashwini Asset 360' })).toBeInTheDocument();
     expect(screen.getByText('Search for equipment')).toBeInTheDocument();
     expect(screen.getByText('No recent assets')).toBeInTheDocument();
     expect(screen.getByText('Recent assets')).toBeInTheDocument();

@@ -78,7 +78,7 @@ describe('App', () => {
     renderApp(
       <App deps={makeDeps()} connectToHostApp={() => Promise.resolve({ api: makeApi() })} service={makeService()} />,
     );
-    expect(await screen.findByRole('heading', { name: 'Asset 360' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: 'Ashwini Asset 360' })).toBeInTheDocument();
     expect(screen.getByRole('searchbox', { name: 'Search assets' })).toBeInTheDocument();
     expect(screen.getByText('Search for equipment')).toBeInTheDocument();
   });
@@ -116,6 +116,6 @@ describe('App', () => {
 
   it('builds the investigation service from the signed-in client', async () => {
     renderApp(<App deps={makeDeps()} connectToHostApp={() => Promise.resolve({ api: makeApi() })} />);
-    expect(await screen.findByRole('heading', { name: 'Asset 360' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: 'Ashwini Asset 360' })).toBeInTheDocument();
   });
 });

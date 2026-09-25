@@ -54,7 +54,7 @@ function HomeScreenView({ model }: { model: ReturnType<typeof useHomeViewModel> 
   return (
     <div className="flex w-full flex-col items-stretch gap-6 text-left">
       <header>
-        <h1 className="text-2xl font-semibold tracking-tight">Asset 360</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Ashwini Asset 360</h1>
         <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
           Search an equipment tag, name, or description to open its time series, work orders, and documents.
         </p>
