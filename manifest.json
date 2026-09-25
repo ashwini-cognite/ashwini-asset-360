@@ -1,6 +1,17 @@
 {
   "manifestVersion": 1,
   "permissions": {
-    "network": []
+    "network": [
+      {
+        "sources": [
+          "https://api.cognitedata.com",
+          "https://*.cognitedata.com",
+          "https://storage.googleapis.com",
+          "https://*.storage.googleapis.com",
+          "https://*.blob.core.windows.net"
+        ],
+        "directives": ["connect-src", "img-src", "frame-src"]
+      }
+    ]
   }
 }
