@@ -1,0 +1,16 @@
+{
+  "name": "Asset 360 Investigation Workspace",
+  "description": "Search an equipment tag and investigate its time series, work orders, and documents in one view.",
+  "externalId": "flows-app-certification",
+  "versionTag": "0.0.1",
+  "infra": "appsApi",
+  "deployments": [
+    {
+      "org": "publicdata",
+      "project": "publicdatacdm",
+      "baseUrl": "https://api.cognitedata.com",
+      "deployClientId": "",
+      "deploySecretName": "PUBLICDATA_PUBLICDATACDM_API"
+    }
+  ]
+}
